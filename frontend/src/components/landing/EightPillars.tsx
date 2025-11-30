@@ -1,10 +1,11 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import {
     Shield,
     Search,
     Stethoscope,
-    Pill,
+    Calendar,
     DollarSign,
     MessageCircle,
     Activity,
@@ -14,55 +15,65 @@ import {
 const pillars = [
     {
         icon: Shield,
-        title: 'Prevention',
-        description: 'Early detection and risk assessment',
+        title: 'Early Detection & Prevention',
+        description: 'Risk assessment + education',
         color: 'from-green-500 to-green-600',
+        link: '/symptom-checker',
     },
     {
         icon: Search,
-        title: 'Screening',
-        description: 'Free and subsidized screening camps',
+        title: 'Screening Support',
+        description: 'Camps, scheduled tests, subsidized screening',
         color: 'from-blue-500 to-blue-600',
+        link: '/screening-locator',
     },
     {
         icon: Stethoscope,
-        title: 'Diagnosis',
-        description: 'Access to best diagnostic facilities',
+        title: 'Diagnosis Navigation',
+        description: 'Help with scans, pathology, timelines',
         color: 'from-purple-500 to-purple-600',
+        link: '/hospital-finder',
     },
     {
-        icon: Pill,
-        title: 'Treatment',
-        description: 'Comprehensive treatment support',
+        icon: Calendar,
+        title: 'Treatment Coordination',
+        description: 'Case manager, appointments, timelines, second opinions',
         color: 'from-pink-500 to-pink-600',
+        link: '/treatment',
     },
     {
         icon: DollarSign,
-        title: 'Financial Aid',
-        description: '6 funding sources integrated',
+        title: 'Financial Assistance & Protection',
+        description: 'PM-JAY, NGO, CSR, NBFC, Adopt-a-Patient',
         color: 'from-yellow-500 to-yellow-600',
+        link: '/financial-assistance',
     },
     {
         icon: MessageCircle,
-        title: 'Counselling',
-        description: 'Mental health and nutrition support',
+        title: 'Counselling & Psychosocial Support',
+        description: 'Mental health, family guidance',
         color: 'from-indigo-500 to-indigo-600',
+        link: '/counselling',
     },
     {
         icon: Activity,
-        title: 'Rehabilitation',
-        description: 'Post-treatment recovery programs',
+        title: 'Rehabilitation & Nutrition Care',
+        description: 'Physio + diet + post-treatment recovery',
         color: 'from-teal-500 to-teal-600',
+        link: '/rehabilitation',
     },
     {
         icon: Heart,
-        title: 'Survivorship',
+        title: 'Palliative & Survivorship Care',
         description: 'Long-term care and follow-up',
         color: 'from-red-500 to-red-600',
+        link: '/palliative',
     },
 ]
 
 export default function EightPillars() {
+    const router = useRouter()
+
     return (
         <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
             <div className="container-custom">
@@ -87,6 +98,7 @@ export default function EightPillars() {
                         return (
                             <div
                                 key={index}
+                                onClick={() => router.push(pillar.link)}
                                 className="group relative bg-white rounded-2xl p-6 border border-gray-200 hover:border-transparent hover:shadow-2xl transition-all duration-300 cursor-pointer"
                             >
                                 {/* Number Badge */}
@@ -109,8 +121,8 @@ export default function EightPillars() {
                                     {pillar.description}
                                 </p>
 
-                                {/* Hover Arrow */}
-                                <div className="mt-4 flex items-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                                {/* Learn More Link - Always Visible */}
+                                <div className="mt-4 flex items-center text-primary-600 transition-all">
                                     <span className="text-sm font-semibold">Learn more</span>
                                     <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
